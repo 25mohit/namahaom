@@ -74,7 +74,7 @@ const ProjectForm:React.FC<ControlBarProps> = ({ setFormShow, setEditData, editD
         
         try {
             await validateForm.validate(form, {abortEarly: false})
-        } catch (error: any) {
+        } catch (error) {
             if (error instanceof yup.ValidationError) { 
                 error.inner.forEach((elem) => {
                     if (elem.path) {
