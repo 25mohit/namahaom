@@ -2,19 +2,19 @@ import { Assignee, Task } from "../Interfaces/Interface";
 
 export const UserTasks: Task[] = [
     {
-        id: Date.now(),
+        id: 0,
         title: 'Frontend Optimization',
-        completeAt:'2024-10-15',
+        completeAt: '2024-10-15',
         priority: 'low',
         status: 'In Progress',
         progress: 20,
-        description: 'Working on improving the frontend performance to reduce load times. Optimization of images and scripts in progress. Working on improving the frontend performance to reduce load times. Optimization of images and scripts in progress.',
+        description: 'Working on improving the frontend performance to reduce load times. Optimization of images and scripts in progress.',
         assignee: 'Amit Sharma'
     },
     {
-        id: Date.now(),
+        id: 1,
         title: 'API Integration',
-        completeAt:'2024-10-15',
+        completeAt: '2024-10-18',
         priority: 'medium',
         status: 'In Progress',
         progress: 70,
@@ -22,9 +22,9 @@ export const UserTasks: Task[] = [
         assignee: 'Pooja Singh'
     },
     {
-        id: Date.now(),
+        id: 2,
         title: 'UI Design Implementation',
-        completeAt:'2024-10-15',
+        completeAt: '2024-10-20',
         priority: 'low',
         status: 'To Do',
         progress: 50,
@@ -32,9 +32,9 @@ export const UserTasks: Task[] = [
         assignee: 'Ravi Kumar'
     },
     {
-        id: Date.now(),
+        id: 3,
         title: 'Backend Architecture Setup',
-        completeAt:'2024-10-15',
+        completeAt: '2024-10-22',
         priority: 'high',
         status: 'In Progress',
         progress: 10,
@@ -42,9 +42,9 @@ export const UserTasks: Task[] = [
         assignee: 'Sanjay Verma'
     },
     {
-        id: Date.now(),
+        id: 4,
         title: 'Responsive Design Testing',
-        completeAt:'2024-10-15',
+        completeAt: '2024-10-25',
         priority: 'high',
         status: 'To Do',
         progress: 60,
@@ -52,9 +52,9 @@ export const UserTasks: Task[] = [
         assignee: 'Priya Nair'
     },
     {
-        id: Date.now(),
+        id: 5,
         title: 'Feature Enhancement',
-        completeAt:'2024-10-15',
+        completeAt: '2024-10-19',
         priority: 'medium',
         status: 'In Progress',
         progress: 70,
@@ -62,9 +62,9 @@ export const UserTasks: Task[] = [
         assignee: 'Manish Gupta'
     },
     {
-        id: Date.now(),
+        id: 6,
         title: 'Deployment to Production',
-        completeAt:'2024-10-15',
+        completeAt: '2024-10-14',
         priority: 'low',
         status: 'Completed',
         progress: 100,
@@ -72,9 +72,9 @@ export const UserTasks: Task[] = [
         assignee: 'Anjali Mehta'
     },
     {
-        id: Date.now(),
+        id: 7,
         title: 'Database Optimization',
-        completeAt:'2024-10-15',
+        completeAt: '2024-10-16',
         priority: 'medium',
         status: 'Completed',
         progress: 100,
@@ -82,9 +82,9 @@ export const UserTasks: Task[] = [
         assignee: 'Rahul Desai'
     },
     {
-        id: Date.now(),
+        id: 8,
         title: 'Security Enhancements',
-        completeAt:'2024-10-15',
+        completeAt: '2024-10-17',
         priority: 'high',
         status: 'In Progress',
         progress: 40,
@@ -92,19 +92,19 @@ export const UserTasks: Task[] = [
         assignee: 'Kavita Iyer'
     },
     {
-        id: Date.now(),
+        id: 9,
         title: 'Frontend Optimization',
-        completeAt:'2024-10-15',
+        completeAt: '2024-10-15',
         priority: 'low',
         status: 'In Progress',
         progress: 20,
-        description: 'Working on improving the frontend performance to reduce load times. Optimization of images and scripts in progress. Working on improving the frontend performance to reduce load times. Optimization of images and scripts in progress.',
+        description: 'Working on improving the frontend performance to reduce load times. Optimization of images and scripts in progress.',
         assignee: 'Amit Sharma'
     },
     {
-        id: Date.now(),
+        id: 10,
         title: 'API Integration',
-        completeAt:'2024-10-15',
+        completeAt: '2024-10-18',
         priority: 'medium',
         status: 'In Progress',
         progress: 70,
@@ -112,9 +112,9 @@ export const UserTasks: Task[] = [
         assignee: 'Pooja Singh'
     },
     {
-        id: Date.now(),
+        id: 11,
         title: 'UI Design Implementation',
-        completeAt:'2024-10-15',
+        completeAt: '2024-10-20',
         priority: 'low',
         status: 'To Do',
         progress: 50,
@@ -122,9 +122,9 @@ export const UserTasks: Task[] = [
         assignee: 'Ravi Kumar'
     },
     {
-        id: Date.now(),
+        id: 12,
         title: 'Backend Architecture Setup',
-        completeAt:'2024-10-15',
+        completeAt: '2024-10-22',
         priority: 'high',
         status: 'In Progress',
         progress: 10,
@@ -132,9 +132,9 @@ export const UserTasks: Task[] = [
         assignee: 'Sanjay Verma'
     },
     {
-        id: Date.now(),
+        id: 13,
         title: 'Responsive Design Testing',
-        completeAt:'2024-10-15',
+        completeAt: '2024-10-25',
         priority: 'high',
         status: 'To Do',
         progress: 60,
@@ -142,9 +142,9 @@ export const UserTasks: Task[] = [
         assignee: 'Priya Nair'
     },
     {
-        id: Date.now(),
+        id: 14,
         title: 'Feature Enhancement',
-        completeAt:'2024-10-15',
+        completeAt: '2024-10-19',
         priority: 'medium',
         status: 'In Progress',
         progress: 70,
@@ -152,9 +152,9 @@ export const UserTasks: Task[] = [
         assignee: 'Manish Gupta'
     },
     {
-        id: Date.now(),
+        id: 15,
         title: 'Deployment to Production',
-        completeAt:'2024-10-15',
+        completeAt: '2024-10-14',
         priority: 'low',
         status: 'Completed',
         progress: 100,
@@ -162,9 +162,9 @@ export const UserTasks: Task[] = [
         assignee: 'Anjali Mehta'
     },
     {
-        id: Date.now(),
+        id: 16,
         title: 'Database Optimization',
-        completeAt:'2024-10-15',
+        completeAt: '2024-10-16',
         priority: 'medium',
         status: 'Completed',
         progress: 100,
@@ -172,9 +172,9 @@ export const UserTasks: Task[] = [
         assignee: 'Rahul Desai'
     },
     {
-        id: Date.now(),
+        id: 17,
         title: 'Security Enhancements',
-        completeAt:'2024-10-15',
+        completeAt: '2024-10-17',
         priority: 'high',
         status: 'In Progress',
         progress: 40,
@@ -182,6 +182,7 @@ export const UserTasks: Task[] = [
         assignee: 'Kavita Iyer'
     },
 ];
+
 export const AssigneeList: Assignee[] = [
     { assignee: 'Mohit Agarwal' },
     { assignee: 'Amit Sharma' },
