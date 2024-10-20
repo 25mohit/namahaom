@@ -1,9 +1,26 @@
-import { ControlBarProps } from '@/app/Interfaces/Interface'
-import React from 'react'
+import { ControlBarProps, Task } from '@/app/Interfaces/Interface'
+import React, { useEffect, useState } from 'react'
 import { FcEmptyFilter } from "react-icons/fc";
 import FilterModal from './FilterModal';
 
-const ControlBar:React.FC<ControlBarProps> = ({ setFormShow, total }) => {
+const ControlBar:React.FC<ControlBarProps> = ({ setFormShow, total, setTaskList }) => {
+  const [selectedOption, setSelectedOption] = useState('')
+  const [showFilter, setShowFilter] = useState(false)
+
+  useEffect(() => {
+    const filterTaskList = (val: string) => {
+      const savedList = localStorage.getItem('taskData')
+      if(savedList == null || savedList == undefined){
+        return setShowFilter(false)
+      } else {
+        const parsed = JSON.parse(savedList)
+        val === 'All' ? setTaskList(parsed) : setTaskList(parsed?.filter((task:Task) => task?.status === val))
+        setShowFilter(false)
+      }
+    }
+    filterTaskList(selectedOption)
+  },[selectedOption])
+
   return (
     <div className='flex justify-between items-center py-4 flex-wrap gap-4'>
       <div className='flex gap-2 items-center flex-wrap'>
@@ -12,8 +29,8 @@ const ControlBar:React.FC<ControlBarProps> = ({ setFormShow, total }) => {
       </div>
       <div className='reverse flex items-center gap-4'>
         <div className='relative'>
-          <FcEmptyFilter title="Filter List" className='cursor-pointer text-xl'/>
-          <FilterModal />
+          <FcEmptyFilter title="Filter List" className='cursor-pointer text-xl' onClick={() => setShowFilter(!showFilter)}/>
+          { showFilter && <FilterModal setSelectedOption={setSelectedOption}/> }
         </div>
         <button className="btn" onClick={() => setFormShow(true)}>Add New Task</button>
       </div>

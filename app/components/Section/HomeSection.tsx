@@ -29,7 +29,7 @@ const HomeSection = () => {
     
   return (
     <div className='home-section'>
-        <ControlBar total={taskList?.length} setFormShow={setFormShow}/>
+        <ControlBar total={taskList?.length} setFormShow={setFormShow} setTaskList={setTaskList}/>
         <div className='conte'>
             {
                 taskList?.map((data, ind) => <Project key={ind} data={data} setEditData={setEditData}/>)

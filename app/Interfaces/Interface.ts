@@ -1,9 +1,12 @@
+import { Dispatch, SetStateAction } from "react";
+
 export interface ControlBarProps {
     setFormShow: (show: boolean) => void;
     setEditData?: any; 
     editData?: any;
     fetchData?: () => void;
-    total?: number
+    total?: number;
+    setTaskList?: any
 }
 export interface Task {
     id?: number;
@@ -17,4 +20,8 @@ export interface Task {
 }
 export interface Assignee {
     assignee: string
+}
+
+export interface filterOptionInterface{
+    setSelectedOption?: Dispatch<SetStateAction<string>>
 }
