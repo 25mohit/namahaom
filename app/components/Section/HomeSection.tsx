@@ -4,9 +4,14 @@ import Project from '../Utils/Card/Project'
 
 const HomeSection = () => {
   return (
-    <div>
+    <div className='home-section'>
         <ControlBar />
-        <section>
+        <section className='flex flex-wrap gap-6'>
+            <Project />
+            <Project />
+            <Project />
+            <Project />
+            <Project />
             <Project />
         </section>
     </div>
