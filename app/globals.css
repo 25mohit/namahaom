@@ -181,8 +181,13 @@ input:focus, select:focus{
   transition: 0.4s;
   box-shadow: 0 0 5px 1px var(--primary-color);
 }
-.filter-modal{
-  
+.error{
+  color: rgb(252, 38, 38);
+  line-height: 0;
+  margin-top: -0.2rem;
+  margin-bottom: 0.3rem;
+  font-size: 0.9rem;
+  font-style: italic;
 }
 @media screen and (max-width: 872px){
   .home-section > section{

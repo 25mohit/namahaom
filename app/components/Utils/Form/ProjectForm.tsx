@@ -3,6 +3,7 @@ import { AssigneeList } from "@/app/moc_data/UserTask";
 import { useEffect, useState } from "react";
 import { IoClose } from "react-icons/io5";
 import { toast } from "react-toastify";
+import * as yup from 'yup'
 
 const ProjectForm:React.FC<ControlBarProps> = ({ setFormShow, setEditData, editData, fetchData }) => {
 
@@ -17,6 +18,7 @@ const ProjectForm:React.FC<ControlBarProps> = ({ setFormShow, setEditData, editD
         progress: 10
     })
     const [isEdit, setIsEdit] = useState(false)
+    const [errors, setErrors] = useState<any>()
 
     const onChangeHandler = (e: any) => {
         const {name, value} = e.target
@@ -35,52 +37,44 @@ const ProjectForm:React.FC<ControlBarProps> = ({ setFormShow, setEditData, editD
         }
     },[editData])
 
+    const validateForm = yup.object({
+        title: yup.string().required('Task Title is Required'),
+        description: yup.string().required('Task Description is Required'),
+        assignee: yup.string().required('Please select a Assignee'),
+        priority: yup.string().required('Please assign a Priority'),
+        completeAt: yup.string().required('Please select task completion Date'),
+        status: yup.string().required('Please select task Status')
+    })
+
     const previousData = localStorage.getItem('taskData')
 
-    const onAddHandler = (e:any) => {
+    const onAddHandler = async (e:any) => {
         e.preventDefault()
         
-        let newData:Task[] = []
-
-        if(previousData !== null && previousData !== undefined){
-            const parsed = JSON.parse(previousData)
-            newData = [form, ...parsed]
-        } else {
-            newData.push(form)
-            
+        let newError:Record<string, string> = {}
+        
+        try {
+            await validateForm.validate(form, {abortEarly: false})
+        } catch (error: any) {
+            error.inner.forEach((elem: any) =>{
+                newError[elem.path] = elem.message
+            })
+            setErrors(newError)
         }
 
-        localStorage.setItem('taskData', JSON.stringify(newData))
-        toast(`🎉 Task Added Successfully !`, {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light"
-            });
-        closeForm()
-    }
+        if(!Object.keys(newError)?.length){
+            let newData:Task[] = []
 
-    const onEditHandler = (e:any) => {
-        e.preventDefault()
-
-        if(previousData !== null && previousData !== undefined){
-            const parsed = JSON.parse(previousData)
-            const newResult = parsed?.map((dt:Task) => {
-                if(dt?.title === editData?.title){
-                    return form
-                } else {
-                    return dt
-                }
-            })
-            localStorage.setItem('taskData', JSON.stringify(newResult))
-            if (fetchData) {
-                fetchData();
+            if(previousData !== null && previousData !== undefined){
+                const parsed = JSON.parse(previousData)
+                newData = [form, ...parsed]
+            } else {
+                newData.push(form)
+                
             }
-            toast(`🎉 Task Updated Successfully !`, {
+
+            localStorage.setItem('taskData', JSON.stringify(newData))
+            toast(`🎉 Task Added Successfully !`, {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -90,7 +84,55 @@ const ProjectForm:React.FC<ControlBarProps> = ({ setFormShow, setEditData, editD
                 progress: undefined,
                 theme: "light"
                 });
-            closeForm()            
+            closeForm()
+        }
+            
+            
+    }
+
+    console.log(errors);
+    
+    
+    const onEditHandler = async (e:any) => {
+        e.preventDefault()
+
+        let newError:Record<string, string> = {}
+        
+        try {
+            await validateForm.validate(form, {abortEarly: false})
+        } catch (error: any) {
+            error.inner.forEach((elem: any) =>{
+                newError[elem.path] = elem.message
+            })
+            setErrors(newError)
+        }
+
+        if(!Object.keys(newError)?.length){
+            if(previousData !== null && previousData !== undefined){
+                const parsed = JSON.parse(previousData)
+                const newResult = parsed?.map((dt:Task) => {
+                    if(dt?.title === editData?.title){
+                        return form
+                    } else {
+                        return dt
+                    }
+                })
+                localStorage.setItem('taskData', JSON.stringify(newResult))
+                if (fetchData) {
+                    fetchData();
+                }
+                toast(`🎉 Task Updated Successfully !`, {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light"
+                    });
+                closeForm()            
+            }
         }
     }
 
@@ -103,26 +145,32 @@ const ProjectForm:React.FC<ControlBarProps> = ({ setFormShow, setEditData, editD
             </header>
             <form action="post" className='flex flex-col gap-4 my-3'>
                 <input onChange={onChangeHandler} name="title" value={form.title} type="text" placeholder='Title' />
+                { errors?.title && <p className="error">{errors.title}</p> }
                 <input onChange={onChangeHandler} name="description" value={form.description} type="text" placeholder='Description' />
+                { errors?.description && <p className="error">{errors.description}</p> }
                 <select  onChange={onChangeHandler} value={form.assignee} name="assignee" id="">
                     <option value="">Assignee</option>
                     {
                         AssigneeList?.map((assignee, index) => <option key={index} value={assignee.assignee}>{assignee.assignee}</option>)
                     }
                 </select>
+                { errors?.assignee && <p className="error">{errors.assignee}</p> }
                 <select onChange={onChangeHandler} value={form.priority}name="priority" id="">
                     <option value="">Priority</option>
                     <option value="low">Low</option>
                     <option value="medium">Medium</option>
                     <option value="high">High</option>
                 </select>
+                { errors?.priority && <p className="error">{errors.priority}</p> }
                 <input onChange={onChangeHandler} value={form.completeAt} type="date" name="completeAt" title='Due Date'/>
+                { errors?.completeAt && <p className="error">{errors.completeAt}</p> }
                 <select  onChange={onChangeHandler} value={form.status} name="status" id="">
                     <option value="">Status</option>
                     <option value="To Do">To Do</option>
                     <option value="In Progress">In Progress</option>
                     <option value="Completed">Completed</option>
                 </select>
+                { errors?.status && <p className="error">{errors.status}</p> }
                 {
                     isEdit ? 
                     <button type="button" onClick={onEditHandler} className="btn">Edit</button> :
