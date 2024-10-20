@@ -18,7 +18,14 @@ const ProjectForm:React.FC<ControlBarProps> = ({ setFormShow, setEditData, editD
         progress: 10
     })
     const [isEdit, setIsEdit] = useState(false)
-    const [errors, setErrors] = useState<any>({})
+    const [errors, setErrors] = useState({
+        title: '',
+        description: '',
+        assignee:'',
+        priority:'',
+        completeAt: '',
+        status: '',
+    })
 
     const onChangeHandler = (e: any) => {
         const {name, value} = e.target
@@ -54,7 +61,7 @@ const ProjectForm:React.FC<ControlBarProps> = ({ setFormShow, setEditData, editD
     const onAddHandler = async (e:any) => {
         e.preventDefault()
         
-        const newError:Record<string, string> = {}
+        const newError:any = {}
         
         try {
             await validateForm.validate(form, {abortEarly: false})
@@ -96,7 +103,7 @@ const ProjectForm:React.FC<ControlBarProps> = ({ setFormShow, setEditData, editD
     const onEditHandler = async (e:any) => {
         e.preventDefault()
 
-        const newError:Record<string, string> = {}
+        const newError:any = {}
         
         try {
             await validateForm.validate(form, {abortEarly: false})

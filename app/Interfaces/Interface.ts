@@ -6,7 +6,7 @@ export interface ControlBarProps {
     editData?: Task | null;
     fetchData?: () => void;
     total?: number;
-    setTaskList?: any
+    setTaskList: Dispatch<SetStateAction<[] | any>>
 }
 export interface Task {
     id: number;
