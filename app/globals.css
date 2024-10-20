@@ -24,6 +24,9 @@ body{
 .nav{
   height: var(--navbar-height);
 }
+.footer{
+  height: var(--footer-height);
+}
 .btn{
   background-color: var(--primary-color);
   color: white;
