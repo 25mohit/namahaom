@@ -1,13 +1,8 @@
-import { Task } from '@/app/Interfaces/Interface';
+import { ProjectProps, Task } from '@/app/Interfaces/Interface';
 import moment from 'moment';
 import React, { Dispatch, SetStateAction } from 'react'
 import { FaCalendarAlt } from "react-icons/fa";
 import { MdOutlineEdit } from "react-icons/md";
-
-interface proj {
-    data: Task,
-    setEditData: Dispatch<SetStateAction<Task>>
-}
 
 const getColorClass = (letter: string) => {
     if (!letter) return '';
@@ -29,7 +24,7 @@ const getColorClass = (letter: string) => {
     return 'bg-gray-500 text-white';
 };
 
-const Project:React.FC<proj> = ({ data, setEditData }) => {
+const Project:React.FC<ProjectProps> = ({ data, setEditData }) => {
     
   return (
     <div className='project p-3 rounded-lg mb-4 flex flex-col gap-2'>

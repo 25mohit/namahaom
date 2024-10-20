@@ -6,7 +6,7 @@ export interface ControlBarProps {
     editData?: Task | null;
     fetchData?: () => void;
     total?: number;
-    setTaskList: Dispatch<SetStateAction<[] | null>>
+    setTaskList: Dispatch<SetStateAction<Task[]>>
 }
 export interface Task {
     id: number;
@@ -32,4 +32,8 @@ export interface FormErrors {
     priority: string;
     completeAt: string;
     status: string;
+}
+export interface ProjectProps {
+    data: Task;
+    setEditData: Dispatch<SetStateAction<Task | null>>; // Change this line
 }

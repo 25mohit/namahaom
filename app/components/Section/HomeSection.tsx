@@ -9,7 +9,7 @@ import HashLoader from "react-spinners/HashLoader";
 
 const HomeSection = () => {
     const [formShow, setFormShow] = useState(false)   
-    const [editData, setEditData] = useState({})
+    const [editData, setEditData] = useState<Task | null>(null)
     const [taskList, setTaskList] = useState<Task[]>([]) 
     const [visibleItems, setVisibleItems] = useState(20);
 
@@ -46,7 +46,7 @@ const HomeSection = () => {
 
   return (
     <div className='home-section'>
-        <ControlBar total={taskList?.length} setFormShow={setFormShow} setTaskList={setTaskList}/>
+        <ControlBar total={taskList?.length} setFormShow={setFormShow} setTaskList={setTaskList} setEditData={setEditData}/>
         <div className='conte'>
             {
                 taskList?.length > 0 ? 
@@ -57,7 +57,7 @@ const HomeSection = () => {
                 </div>
             }
         </div>
-        { (formShow || Object.keys(editData)?.length > 0) && <ProjectForm fetchData={fetchData} setEditData={setEditData} editData={editData} setFormShow={setFormShow}/> }
+        { (formShow || editData && Object.keys(editData)?.length > 0) && <ProjectForm setTaskList={setTaskList} fetchData={fetchData} setEditData={setEditData} editData={editData} setFormShow={setFormShow}/> }
     </div>
   )
 }
