@@ -1,12 +1,12 @@
 import { Task } from '@/app/Interfaces/Interface';
 import moment from 'moment';
-import React from 'react'
+import React, { Dispatch, SetStateAction } from 'react'
 import { FaCalendarAlt } from "react-icons/fa";
 import { MdOutlineEdit } from "react-icons/md";
 
 interface proj {
-    data?: Task,
-    setEditData?: any
+    data: Task,
+    setEditData: Dispatch<SetStateAction<Task>>
 }
 
 const getColorClass = (letter: string) => {

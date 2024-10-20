@@ -23,5 +23,5 @@ export interface Assignee {
 }
 
 export interface filterOptionInterface{
-    setSelectedOption?: Dispatch<SetStateAction<string>>
+    setSelectedOption: Dispatch<SetStateAction<string>>
 }

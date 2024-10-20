@@ -1,11 +1,10 @@
 import { filterOptionInterface } from '@/app/Interfaces/Interface'
 import React from 'react'
 
-
 const FilterModal:React.FC<filterOptionInterface> = ({ setSelectedOption }) => {
 
     const onSelectHandler = (value: string) => {
-        setSelectedOption && setSelectedOption(value)
+        setSelectedOption(value)
     }
     
   return (
