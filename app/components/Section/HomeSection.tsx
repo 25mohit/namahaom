@@ -26,8 +26,6 @@ const HomeSection = () => {
             fetchData()
         }        
     },[formShow])
-
-    console.log("taskList", taskList, editData, formShow);
     
   return (
     <div className='home-section'>

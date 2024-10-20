@@ -181,6 +181,9 @@ input:focus, select:focus{
   transition: 0.4s;
   box-shadow: 0 0 5px 1px var(--primary-color);
 }
+.filter-modal{
+  
+}
 @media screen and (max-width: 872px){
   .home-section > section{
     justify-content: center;
@@ -222,5 +225,8 @@ input:focus, select:focus{
 @media (max-width: 767px){
   .conte{
     columns: 1;
+  }
+  .reverse{
+    flex-direction: row-reverse;
   }
 }

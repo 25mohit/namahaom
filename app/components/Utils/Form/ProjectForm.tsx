@@ -49,7 +49,7 @@ const ProjectForm:React.FC<ControlBarProps> = ({ setFormShow, setEditData, editD
             newData.push(form)
             
         }
-        console.log(newData, fetchData);
+
         localStorage.setItem('taskData', JSON.stringify(newData))
         toast(`🎉 Task Added Successfully !`, {
             position: "top-right",
