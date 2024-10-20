@@ -31,7 +31,7 @@ const HomeSection = () => {
     
   return (
     <div className='home-section'>
-        <ControlBar setFormShow={setFormShow}/>
+        <ControlBar total={taskList?.length} setFormShow={setFormShow}/>
         <div className='conte'>
             {
                 taskList?.map((data, ind) => <Project key={ind} data={data} setEditData={setEditData}/>)

@@ -1,10 +1,9 @@
-import { Dispatch, SetStateAction } from "react";
-
 export interface ControlBarProps {
     setFormShow: (show: boolean) => void;
     setEditData?: any; 
     editData?: any;
-    fetchData?: () => void
+    fetchData?: () => void;
+    total?: number
 }
 export interface Task {
     id?: number;
