@@ -85,7 +85,7 @@ const ProjectForm:React.FC<ControlBarProps> = ({ setFormShow, setEditData, editD
             setErrors(newError)
         }
 
-        if(!Object.keys(newError)?.length){
+        if(Object.values(newError).every((value) => value === '')){
             let newData:Task[] = []
 
             if(previousData !== null && previousData !== undefined){
@@ -136,7 +136,7 @@ const ProjectForm:React.FC<ControlBarProps> = ({ setFormShow, setEditData, editD
             setErrors(newError)
         }
 
-        if(!Object.keys(newError)?.length){
+        if(Object.values(newError).every((value) => value === '')){
             if(previousData !== null && previousData !== undefined){
                 const parsed = JSON.parse(previousData)
                 const newResult = parsed?.map((dt:Task) => {
