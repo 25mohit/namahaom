@@ -101,7 +101,7 @@ body{
   height: 10px;
   z-index: 1;
   width: 80%;
-  transition: 0.4s;  
+  transition: 0.2s;  
   box-shadow: 0px 10px 15px rgba(231, 243, 14, 0.896);
 
 }
