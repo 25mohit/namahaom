@@ -1,6 +1,6 @@
 # Project Dashboard
 
-This is a task management dashboard built with [Next.js](https://nextjs.org) and [React](https://reactjs.org). The application allows users to view, create, and manage tasks for specific projects.
+This is a task management dashboard built with [Next.js](https://nextjs.org). The application allows users to view, create, and manage tasks for specific projects.
 
 ## Features
 
