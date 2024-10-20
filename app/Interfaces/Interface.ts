@@ -35,5 +35,5 @@ export interface FormErrors {
 }
 export interface ProjectProps {
     data: Task;
-    setEditData: Dispatch<SetStateAction<Task | null>>; // Change this line
+    setEditData: Dispatch<SetStateAction<Task | null>>;
 }
