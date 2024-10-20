@@ -27,7 +27,7 @@ const ProjectForm:React.FC<ControlBarProps> = ({ setFormShow, setEditData, editD
         status: '',
     })
 
-    const onChangeHandler = (e: any) => {
+    const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const {name, value} = e.target
         setForm({...form, [name]:value})
         if(errors && Object.keys(errors)?.length > 0){
@@ -58,7 +58,7 @@ const ProjectForm:React.FC<ControlBarProps> = ({ setFormShow, setEditData, editD
 
     const previousData = localStorage.getItem('taskData')
 
-    const onAddHandler = async (e:any) => {
+    const onAddHandler = async (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault()
         
         const newError:any = {}
@@ -66,9 +66,13 @@ const ProjectForm:React.FC<ControlBarProps> = ({ setFormShow, setEditData, editD
         try {
             await validateForm.validate(form, {abortEarly: false})
         } catch (error: any) {
-            error.inner.forEach((elem: any) =>{
-                newError[elem.path] = elem.message
-            })
+            if (error instanceof yup.ValidationError) { 
+                error.inner.forEach((elem) => {
+                    if (elem.path) {
+                        newError[elem.path] = elem.message;
+                    }
+                });
+            }
             setErrors(newError)
         }
 
@@ -95,22 +99,24 @@ const ProjectForm:React.FC<ControlBarProps> = ({ setFormShow, setEditData, editD
                 theme: "light"
                 });
             closeForm()
-        }
-            
-            
+        }            
     }
     
-    const onEditHandler = async (e:any) => {
+    const onEditHandler = async (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault()
 
         const newError:any = {}
         
         try {
             await validateForm.validate(form, {abortEarly: false})
-        } catch (error: any) {
-            error.inner.forEach((elem: any) =>{
-                newError[elem.path] = elem.message
-            })
+        } catch (error) {
+            if (error instanceof yup.ValidationError) { 
+                error.inner.forEach((elem) => {
+                    if (elem.path) {
+                        newError[elem.path] = elem.message;
+                    }
+                });
+            }
             setErrors(newError)
         }
 
@@ -156,7 +162,7 @@ const ProjectForm:React.FC<ControlBarProps> = ({ setFormShow, setEditData, editD
                 <textarea onChange={onChangeHandler} name="description" value={form.description} placeholder='Description' ></textarea>
                 {/* <input onChange={onChangeHandler} name="description" value={form.description} type="text" placeholder='Description' /> */}
                 { errors?.description && <p className="error">{errors.description}</p> }
-                <select  onChange={onChangeHandler} value={form.assignee} name="assignee">
+                <select onChange={onChangeHandler} value={form.assignee} name="assignee">
                     <option value="">Assignee</option>
                     {
                         AssigneeList?.map((assignee, index) => <option key={index} value={assignee.assignee}>{assignee.assignee}</option>)
