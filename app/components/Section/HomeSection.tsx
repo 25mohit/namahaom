@@ -29,10 +29,11 @@ const HomeSection = () => {
         }        
     },[formShow])
 
+    // Scroll function manage List of Tasks based on the Use scroll, when there is only 100px left in bottom, then new data will be added to list
     const handleScroll = useCallback(() => {
-        const bottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 100; // Adjust threshold for smaller screens
+        const bottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 100;
         if (bottom && visibleItems < taskList.length) {
-            setVisibleItems(prev => Math.min(prev + 10, taskList.length)); // Ensure we don’t exceed the total number of items
+            setVisibleItems(prev => Math.min(prev + 10, taskList.length));
         }
     }, [taskList.length, visibleItems]);
 

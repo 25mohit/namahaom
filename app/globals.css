@@ -110,8 +110,8 @@ body{
 
 }
 .priority{
-  width: 6px;
-  height: 20px;
+  width: 8px;
+  height: 23px;
 }
 .priority.high{
   background-color: rgb(255, 62, 62);
@@ -171,7 +171,7 @@ body{
   background: linear-gradient(90deg, #A081F5, #737AED, #40A9EC, #24D3E7);
   border-radius: 15px;
 }
-input, select{
+input, select, textarea{
   background-color: white;
   border: 1px solid rgb(59 130 246 / 0.5);
   height: var(--inputs-height);
@@ -180,9 +180,13 @@ input, select{
   outline: none;
   transition: 0.4s;
 }
-input:focus, select:focus{
+input:focus, select:focus, textarea:focus{
   transition: 0.4s;
   box-shadow: 0 0 5px 1px var(--primary-color);
+}
+textarea{
+  min-height: 4rem;
+  max-height: 8rem;
 }
 .error{
   color: rgb(252, 38, 38);

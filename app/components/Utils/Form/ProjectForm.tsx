@@ -23,7 +23,7 @@ const ProjectForm:React.FC<ControlBarProps> = ({ setFormShow, setEditData, editD
     const onChangeHandler = (e: any) => {
         const {name, value} = e.target
         setForm({...form, [name]:value})
-        if(Object.keys(errors)?.length > 0){
+        if(errors && Object.keys(errors)?.length > 0){
             setErrors({...errors, [name]:''})
         }
     }
@@ -146,7 +146,8 @@ const ProjectForm:React.FC<ControlBarProps> = ({ setFormShow, setEditData, editD
             <form action="post" className='flex flex-col gap-4 my-3'>
                 <input onChange={onChangeHandler} name="title" value={form.title} type="text" placeholder='Title' />
                 { errors?.title && <p className="error">{errors.title}</p> }
-                <input onChange={onChangeHandler} name="description" value={form.description} type="text" placeholder='Description' />
+                <textarea onChange={onChangeHandler} name="description" value={form.description} placeholder='Description' ></textarea>
+                {/* <input onChange={onChangeHandler} name="description" value={form.description} type="text" placeholder='Description' /> */}
                 { errors?.description && <p className="error">{errors.description}</p> }
                 <select  onChange={onChangeHandler} value={form.assignee} name="assignee">
                     <option value="">Assignee</option>
