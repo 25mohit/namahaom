@@ -7,6 +7,9 @@
   --navbar-height: 5rem;
   --footer-height: 2rem;
   --padding: 0 6rem;
+  --mobile-padding: 0 1.4rem;
+  --primary-color: rgb(59 130 246 / 1);
+  --inputs-height: 2.1rem;
 }
 body{
   background-color: var(--background);
@@ -15,14 +18,50 @@ body{
 .nav, .home-section, .footer{
   padding: var(--padding);
 }
+.home-section{
+  min-height: calc(100vh - var(--navbar-height) - var(--footer-height));
+}
 .nav{
   height: var(--navbar-height);
+}
+.btn{
+  background-color: var(--primary-color);
+  color: white;
+  height: var(--inputs-height);
+  padding: 0 0.5rem;
+  border-radius: 5px;
+  border: 1px solid var(--primary-color);
+}
+.btn:hover{
+  cursor: pointer;
+  background-color: white;
+  color: var(--primary-color);
+  transition: 0.5s;
+}
+.cont{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: transparent;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(5px);
+}
+.project-modal{
+  width: 400px;
+  background-color: white;
+  border-radius: 5px;
+  z-index: 10;
+  box-shadow: 0px 10px 15px rgba(82, 96, 222, 0.407);
 }
 .project{
   background-color: white;
   /* min-width: 15rem;
   max-width: 15rem; */
   width: 20rem;
+  height: fit-content;
   position: relative;
   box-shadow: 0 -2px 10px 1px rgba(204, 204, 204, 0.533);
   transition: 0.4s;
@@ -58,21 +97,37 @@ body{
 
 }
 .priority{
-  background-color: red;
   width: 6px;
+}
+.priority.high{
+  background-color: rgb(255, 62, 62);
+}
+.priority.medium{
+  background-color: rgb(0, 229, 255);
+}
+.priority.low{
+  background-color: yellow;
 }
 .status{
   font-size: 0.9rem;
-  background-color: rgb(251, 174, 31);
   color: white;
+}
+.status.InProgress{
+  background-color: rgb(255, 189, 68);
+}
+.status.ToDo{
+  background-color: rgb(0, 179, 255);
+}
+.status.Completed{
+  background-color: rgb(20, 201, 3);
 }
 .description{
   letter-spacing: 1px;
   font-size: 0.9rem;
 }
+
 .logo{
   display: flex;
-  background-color: green;
   color: white;
   display: flex;
   align-items: center;
@@ -93,9 +148,39 @@ body{
   overflow: hidden;
   box-shadow: 0 2px 2px rgba(216, 18, 18, 0.1);
 }
-.progress {
-  width: 70%; 
+.progress { 
   height: 100%;
   background: linear-gradient(90deg, #A081F5, #737AED, #40A9EC, #24D3E7);
   border-radius: 15px;
+}
+input, select{
+  background-color: white;
+  border: 1px solid rgb(59 130 246 / 0.5);
+  height: var(--inputs-height);
+  border-radius: 5px;
+  padding: 0 0.6rem;
+  outline: none;
+  transition: 0.4s;
+}
+input:focus, select:focus{
+  transition: 0.4s;
+  box-shadow: 0 0 5px 1px var(--primary-color);
+}
+@media screen and (max-width: 872px){
+  .home-section > section{
+    justify-content: center;
+  }
+}
+@media screen and (max-width: 543px){  
+  .nav, .home-section, .footer{
+    padding: var(--mobile-padding);
+  }
+}
+@media screen and (max-width: 437px){  
+  .project{
+    width: 100%;
+  }
+  .project-modal{
+    width: 90vw;
+  }
 }

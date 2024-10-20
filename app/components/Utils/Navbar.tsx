@@ -1,18 +1,100 @@
-import React from 'react'
+"use client";
+import { useEffect, useState } from 'react';
+import { FiMenu, FiX } from 'react-icons/fi';
+import Link from 'next/link';
+import { FaSignOutAlt } from "react-icons/fa";
+import { useRouter } from 'next/navigation';
 
-const Navbar = () => {
+export default function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [info, setInfo] = useState({})
+  const router = useRouter();
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+  
+  function decrypt() {
+    const token = localStorage.getItem('token');
+      if (!token) {
+      console.error('No token found');
+      return null;
+    }
+  
+    const parts = token.split('.');
+  
+    if (parts.length !== 3) {
+      console.error('Invalid token format');
+      return null;
+    }
+  
+    const payload = parts[1];
+  
+    const base64 = payload.replace(/-/g, '+').replace(/_/g, '/');
+  
+    try {
+      const decodedPayload = JSON.parse(atob(base64));
+      return setInfo({name: decodedPayload?.name, email: decodedPayload?.email})
+    } catch (error) {
+      console.error('Error decoding token:', error);
+      return null;
+    }
+  }
+
+  useEffect(() => {    
+    decrypt()
+  },[])
+  
   return (
-    <nav className='nav flex items-center justify-between mx-auto'>
-        <h1 className='text-2xl font-extrabold text-gray-700'>Task Management</h1>
-        <ul className='flex gap-9 text-blue-500 font-medium'>
-            <li className='cursor-pointer'>Pricing</li>
-            <li className='cursor-pointer'>About</li>
-            <li className='cursor-pointer'>Language</li>
-            <li className='cursor-pointer'>Conditions</li>
-            <li className='cursor-pointer'>Logout ?</li>
-        </ul>
-    </nav>
-  )
-}
+    <nav className="flex nav">
+      <div className="pc-nav w-full flex justify-between items-center">
+        
+        {/* Logo */}
+        <div className="text-2xl font-bold">
+          <Link href="/"><i>Task Management</i></Link>
+        </div>
 
-export default Navbar
+        {/* Center Menu */}
+        <div className="hidden md:flex space-x-8 text-md text-blue-600">
+          <span className="cursor-pointer hover:text-gray-400 transition duration-300">Home</span>
+          <span className="cursor-pointer hover:text-gray-400 transition duration-300">About</span>
+          <span className="cursor-pointer hover:text-gray-400 transition duration-300">Services</span>
+          <span className="cursor-pointer hover:text-gray-400 transition duration-300">Contact</span>
+          <span className="cursor-pointer hover:text-gray-400 transition duration-300"><b>Logout</b></span>
+        </div>
+
+        {/* Hamburger Icon for Mobile */}
+        <div className="md:hidden flex items-center gap-3">
+          <button onClick={toggleMenu}>
+            {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile Sidebar Menu */}
+      <div
+        className={`fixed z-10 top-0 right-0 h-full w-64 bg-gray-900 text-white p-6 transition-transform transform ${
+          isOpen ? 'translate-x-0' : 'translate-x-full'
+        } md:hidden`}
+      >
+        <button onClick={toggleMenu} className="text-white">
+          <FiX size={24} />
+        </button>
+        <div className="mt-8 space-y-6 flex flex-col">
+          <span onClick={toggleMenu} className="block text-xl hover:text-gray-400 transition duration-300">
+            Home
+          </span>
+          <span onClick={toggleMenu} className="block text-xl hover:text-gray-400 transition duration-300">
+            About
+          </span>
+          <span onClick={toggleMenu} className="block text-xl hover:text-gray-400 transition duration-300">
+            Services
+          </span>
+          <span onClick={toggleMenu} className="block text-xl hover:text-gray-400 transition duration-300">
+            Contact
+          </span>
+          <span className='flex items-center gap-2'>Logout</span>
+        </div>
+      </div>
+    </nav>
+  );
+}
