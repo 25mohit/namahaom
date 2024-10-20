@@ -23,6 +23,9 @@ const ProjectForm:React.FC<ControlBarProps> = ({ setFormShow, setEditData, editD
     const onChangeHandler = (e: any) => {
         const {name, value} = e.target
         setForm({...form, [name]:value})
+        if(Object.keys(errors)?.length > 0){
+            setErrors({...errors, [name]:''})
+        }
     }
 
     const closeForm = () => {
@@ -89,9 +92,6 @@ const ProjectForm:React.FC<ControlBarProps> = ({ setFormShow, setEditData, editD
             
             
     }
-
-    console.log(errors);
-    
     
     const onEditHandler = async (e:any) => {
         e.preventDefault()
@@ -148,14 +148,14 @@ const ProjectForm:React.FC<ControlBarProps> = ({ setFormShow, setEditData, editD
                 { errors?.title && <p className="error">{errors.title}</p> }
                 <input onChange={onChangeHandler} name="description" value={form.description} type="text" placeholder='Description' />
                 { errors?.description && <p className="error">{errors.description}</p> }
-                <select  onChange={onChangeHandler} value={form.assignee} name="assignee" id="">
+                <select  onChange={onChangeHandler} value={form.assignee} name="assignee">
                     <option value="">Assignee</option>
                     {
                         AssigneeList?.map((assignee, index) => <option key={index} value={assignee.assignee}>{assignee.assignee}</option>)
                     }
                 </select>
                 { errors?.assignee && <p className="error">{errors.assignee}</p> }
-                <select onChange={onChangeHandler} value={form.priority}name="priority" id="">
+                <select onChange={onChangeHandler} value={form.priority}name="priority">
                     <option value="">Priority</option>
                     <option value="low">Low</option>
                     <option value="medium">Medium</option>
@@ -164,7 +164,7 @@ const ProjectForm:React.FC<ControlBarProps> = ({ setFormShow, setEditData, editD
                 { errors?.priority && <p className="error">{errors.priority}</p> }
                 <input onChange={onChangeHandler} value={form.completeAt} type="date" name="completeAt" title='Due Date'/>
                 { errors?.completeAt && <p className="error">{errors.completeAt}</p> }
-                <select  onChange={onChangeHandler} value={form.status} name="status" id="">
+                <select  onChange={onChangeHandler} value={form.status} name="status">
                     <option value="">Status</option>
                     <option value="To Do">To Do</option>
                     <option value="In Progress">In Progress</option>
@@ -173,8 +173,8 @@ const ProjectForm:React.FC<ControlBarProps> = ({ setFormShow, setEditData, editD
                 { errors?.status && <p className="error">{errors.status}</p> }
                 {
                     isEdit ? 
-                    <button type="button" onClick={onEditHandler} className="btn">Edit</button> :
-                    <button type="button" onClick={onAddHandler} className="btn">Submit</button>
+                    <button type="submit" onClick={onEditHandler} className="btn">Edit</button> :
+                    <button type="submit" onClick={onAddHandler} className="btn">Submit</button>
                 }
             </form>
         </div>

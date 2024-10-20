@@ -5,6 +5,7 @@ import Project from '../Utils/Card/Project'
 import ProjectForm from '../Utils/Form/ProjectForm'
 import { UserTasks } from '@/app/moc_data/UserTask'
 import { Task } from '@/app/Interfaces/Interface'
+import HashLoader from "react-spinners/HashLoader";
 
 const HomeSection = () => {
     const [formShow, setFormShow] = useState(false)   
@@ -40,17 +41,19 @@ const HomeSection = () => {
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
-    }, [handleScroll]);
-
-    console.log(taskList);
-    
+    }, [handleScroll]);    
 
   return (
     <div className='home-section'>
         <ControlBar total={taskList?.length} setFormShow={setFormShow} setTaskList={setTaskList}/>
         <div className='conte'>
             {
+                taskList?.length > 0 ? 
                 taskList.slice(0, visibleItems)?.map((data, ind) => <Project key={ind} data={data} setEditData={setEditData}/>)
+                : 
+                <div className="loading-ui fixed">
+                    <HashLoader size={60} color='rgb(226, 226, 59)'/>
+                </div>
             }
         </div>
         { (formShow || Object.keys(editData)?.length > 0) && <ProjectForm fetchData={fetchData} setEditData={setEditData} editData={editData} setFormShow={setFormShow}/> }

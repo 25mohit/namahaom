@@ -189,6 +189,11 @@ input:focus, select:focus{
   font-size: 0.9rem;
   font-style: italic;
 }
+.loading-ui{
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 @media screen and (max-width: 872px){
   .home-section > section{
     justify-content: center;
