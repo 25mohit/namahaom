@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction } from "react";
 
 export interface ControlBarProps {
     setFormShow: (show: boolean) => void;
-    setEditData?: any; 
+    setEditData?: Dispatch<SetStateAction<any>>; 
     editData?: any;
     fetchData?: () => void;
     total?: number;

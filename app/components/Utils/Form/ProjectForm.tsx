@@ -29,7 +29,7 @@ const ProjectForm:React.FC<ControlBarProps> = ({ setFormShow, setEditData, editD
     }
 
     const closeForm = () => {
-        Object.keys(editData || {})?.length > 0 && setEditData({})
+        Object.keys(editData || {})?.length > 0 && (setEditData && setEditData({}))
         setFormShow(false)
     }
 
