@@ -1,48 +1,16 @@
 "use client";
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { FiMenu, FiX } from 'react-icons/fi';
 import Link from 'next/link';
-import { FaSignOutAlt } from "react-icons/fa";
-import { useRouter } from 'next/navigation';
+
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [info, setInfo] = useState({})
-  const router = useRouter();
+
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
   
-  function decrypt() {
-    const token = localStorage.getItem('token');
-      if (!token) {
-      console.error('No token found');
-      return null;
-    }
-  
-    const parts = token.split('.');
-  
-    if (parts.length !== 3) {
-      console.error('Invalid token format');
-      return null;
-    }
-  
-    const payload = parts[1];
-  
-    const base64 = payload.replace(/-/g, '+').replace(/_/g, '/');
-  
-    try {
-      const decodedPayload = JSON.parse(atob(base64));
-      return setInfo({name: decodedPayload?.name, email: decodedPayload?.email})
-    } catch (error) {
-      console.error('Error decoding token:', error);
-      return null;
-    }
-  }
-
-  useEffect(() => {    
-    decrypt()
-  },[])
   
   return (
     <nav className="flex nav">

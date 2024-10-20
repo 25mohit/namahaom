@@ -1,7 +1,6 @@
 import React from 'react'
 import ControlBar from '../Utils/ControlBar'
 import Project from '../Utils/Card/Project'
-import ProjectForm from '../Utils/Form/ProjectForm'
 
 const HomeSection = () => {
     const testData = [
