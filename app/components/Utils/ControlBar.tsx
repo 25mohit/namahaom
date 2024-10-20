@@ -18,6 +18,7 @@ const ControlBar:React.FC<ControlBarProps> = ({ setFormShow, total, setTaskList 
           setTaskList(parsed) 
         } else {
           setTaskList(parsed?.filter((task:Task) => task?.status === val))
+          
         }
         setShowFilter(false)
       }

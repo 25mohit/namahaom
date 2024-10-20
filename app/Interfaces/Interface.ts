@@ -2,14 +2,14 @@ import { Dispatch, SetStateAction } from "react";
 
 export interface ControlBarProps {
     setFormShow: (show: boolean) => void;
-    setEditData?: Dispatch<SetStateAction<any>>; 
-    editData?: any;
+    setEditData?: Dispatch<SetStateAction<Task | null>>; 
+    editData?: Task | null;
     fetchData?: () => void;
     total?: number;
     setTaskList?: any
 }
 export interface Task {
-    id?: number;
+    id: number;
     title: string;
     priority: string;
     status: string;
