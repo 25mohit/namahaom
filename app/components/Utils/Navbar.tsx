@@ -13,7 +13,7 @@ export default function Navbar() {
   
   
   return (
-    <nav className="flex nav">
+    <nav className="flex nav select-none">
       <div className="pc-nav w-full flex justify-between items-center">
         
         {/* Logo */}
@@ -40,27 +40,27 @@ export default function Navbar() {
 
       {/* Mobile Sidebar Menu */}
       <div
-        className={`fixed z-10 top-0 right-0 h-full w-64 bg-gray-900 text-white p-6 transition-transform transform ${
+        className={`mobile-nav fixed z-10 top-0 right-0 h-full w-64 text-gray-700 p-6 transition-transform transform ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         } md:hidden`}
       >
-        <button onClick={toggleMenu} className="text-white">
+        <button onClick={toggleMenu} className="text-red-500">
           <FiX size={24} />
         </button>
         <div className="mt-8 space-y-6 flex flex-col">
-          <span onClick={toggleMenu} className="block text-xl hover:text-gray-400 transition duration-300">
+          <span onClick={toggleMenu} className="block text-xl transition duration-300">
             Home
           </span>
-          <span onClick={toggleMenu} className="block text-xl hover:text-gray-400 transition duration-300">
+          <span onClick={toggleMenu} className="block text-xl transition duration-300">
             About
           </span>
-          <span onClick={toggleMenu} className="block text-xl hover:text-gray-400 transition duration-300">
+          <span onClick={toggleMenu} className="block text-xl transition duration-300">
             Services
           </span>
-          <span onClick={toggleMenu} className="block text-xl hover:text-gray-400 transition duration-300">
+          <span onClick={toggleMenu} className="block text-xl transition duration-300">
             Contact
           </span>
-          <span className='flex items-center gap-2'>Logout</span>
+          <span onClick={toggleMenu} className='block text-xl transition duration-300'>Logout</span>
         </div>
       </div>
     </nav>
