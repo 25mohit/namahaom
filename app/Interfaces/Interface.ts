@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction } from "react";
 
 export interface ControlBarProps {
     setFormShow: (show: boolean) => void;
-    setEditData?: Dispatch<SetStateAction<Task | null>>; 
+    setEditData: Dispatch<SetStateAction<Task | null>>; 
     editData?: Task | null;
     fetchData?: () => void;
     total?: number;
@@ -24,4 +24,12 @@ export interface Assignee {
 
 export interface filterOptionInterface{
     setSelectedOption: Dispatch<SetStateAction<string>>
+}
+export interface FormErrors {
+    title: string;
+    description: string;
+    assignee: string;
+    priority: string;
+    completeAt: string;
+    status: string;
 }

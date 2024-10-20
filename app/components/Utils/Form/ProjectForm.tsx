@@ -1,4 +1,4 @@
-import { ControlBarProps, Task } from "@/app/Interfaces/Interface";
+import { ControlBarProps, FormErrors, Task } from "@/app/Interfaces/Interface";
 import { AssigneeList } from "@/app/moc_data/UserTask";
 import { useEffect, useState } from "react";
 import { IoClose } from "react-icons/io5";
@@ -36,7 +36,9 @@ const ProjectForm:React.FC<ControlBarProps> = ({ setFormShow, setEditData, editD
     }
 
     const closeForm = () => {
-        editData && Object.keys(editData)?.length > 0 && (setEditData && setEditData(null))
+        if(editData){
+            Object.keys(editData)?.length > 0 && setEditData(null)
+        }
         setFormShow(false)
     }
 
@@ -61,7 +63,14 @@ const ProjectForm:React.FC<ControlBarProps> = ({ setFormShow, setEditData, editD
     const onAddHandler = async (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault()
         
-        const newError:any = {}
+        const newError: FormErrors = {
+            title: '',
+            description: '',
+            assignee: '',
+            priority: '',
+            completeAt: '',
+            status: '',
+        };
         
         try {
             await validateForm.validate(form, {abortEarly: false})
@@ -69,7 +78,7 @@ const ProjectForm:React.FC<ControlBarProps> = ({ setFormShow, setEditData, editD
             if (error instanceof yup.ValidationError) { 
                 error.inner.forEach((elem) => {
                     if (elem.path) {
-                        newError[elem.path] = elem.message;
+                        newError[elem.path as keyof FormErrors] = elem.message;
                     }
                 });
             }
@@ -105,7 +114,14 @@ const ProjectForm:React.FC<ControlBarProps> = ({ setFormShow, setEditData, editD
     const onEditHandler = async (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault()
 
-        const newError:any = {}
+        const newError: FormErrors = {
+            title: '',
+            description: '',
+            assignee: '',
+            priority: '',
+            completeAt: '',
+            status: '',
+        };
         
         try {
             await validateForm.validate(form, {abortEarly: false})
@@ -113,7 +129,7 @@ const ProjectForm:React.FC<ControlBarProps> = ({ setFormShow, setEditData, editD
             if (error instanceof yup.ValidationError) { 
                 error.inner.forEach((elem) => {
                     if (elem.path) {
-                        newError[elem.path] = elem.message;
+                        newError[elem.path as keyof FormErrors] = elem.message;
                     }
                 });
             }
